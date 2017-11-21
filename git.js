@@ -73,3 +73,41 @@ console.log(commonFactors(6, 24));
 // commonPrimeFactors(45, 60); // => [ 3, 5 ]
 
 
+function commonPrimeFactors(num1, num2) {
+   var primeFactors = [];
+   var factors1 = findFactors(num1);
+   var factors2 = findFactors(num2);
+
+   for (var i = 0; i < factors1.length; i++) {
+      var factor = factors1[i];
+      if (factors2.indexOf(factor) > -1 && isPrime(factor)) {
+         primeFactors.push(factor);
+      }
+   }
+   return primeFactors;
+}
+
+function findFactors(num) {
+   var factors = [];
+   for (var i = 1; i <= num; i++) {
+      if (num % i === 0) {
+         factors.push(i);
+      }
+   }
+   return factors;
+}
+
+function isPrime(num) {
+   if (num < 2) {
+      return false;
+   }
+
+   for (var i = 2; i < num; i++) {
+      if (num % i === 0) {
+         return false;
+      }
+   }
+   return true;
+}
+
+console.log(commonPrimeFactors(45, 60));
